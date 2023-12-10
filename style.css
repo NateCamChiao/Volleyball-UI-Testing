@@ -11,7 +11,7 @@
 body {
   font-family: Tahoma, sans-serif;
   margin: 0;
-  background-image: url("/website/HomescreenBG.svg");
+  background-image: url("HomescreenBG.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
