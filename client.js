@@ -1,4 +1,3 @@
-const socket = io.connect("http://192.168.1.72:3000");
 let roomsContainer = document.querySelector("#rooms-container");
 let roomCopy = document.querySelector("#room-copy");
 let rooms = document.querySelector("#rooms");
@@ -136,38 +135,38 @@ function addRoomElement(
 	clone.classList.remove("hidden");
 }
 
-socket.on("player-left", (socketId) => {
-	console.log("player left team");
-	removeTeamElement(socketId);
-});
-socket.on("invalid room name", () => {
-	alert("Invalid Room Name");
-});
+// socket.on("player-left", (socketId) => {
+// 	console.log("player left team");
+// 	removeTeamElement(socketId);
+// });
+// socket.on("invalid room name", () => {
+// 	alert("Invalid Room Name");
+// });
 
-socket.on("updateRooms", (backEndRooms, updatingTeams) => {
-	updateRooms(backEndRooms, roomsList, updatingTeams);
-	roomsList = backEndRooms;
-	updatePlayerCounters();
-	console.info(roomsList);
-});
+// socket.on("updateRooms", (backEndRooms, updatingTeams) => {
+// 	updateRooms(backEndRooms, roomsList, updatingTeams);
+// 	roomsList = backEndRooms;
+// 	updatePlayerCounters();
+// 	console.info(roomsList);
+// });
 
-socket.on("joinedRoom", (roomName) => {
-	rooms.style.display = "none";
-	gameRoomMenu.style.display = "block";
-	gameRoomMenu.querySelector("#gameRoomMenu .title h3").innerText = roomName;
-	//some stuff for filling out room data
-	gameRoomName = roomName;
-});
-socket.on("leftRoom", (roomName) => {
-	rooms.style.display = "block";
-	gameRoomMenu.style.display = "none";
-	gameRoomMenu.querySelector("#gameRoomMenu .title h3").innerText = "";
-	gameRoomRoom = "";
-});
+// socket.on("joinedRoom", (roomName) => {
+// 	rooms.style.display = "none";
+// 	gameRoomMenu.style.display = "block";
+// 	gameRoomMenu.querySelector("#gameRoomMenu .title h3").innerText = roomName;
+// 	//some stuff for filling out room data
+// 	gameRoomName = roomName;
+// });
+// socket.on("leftRoom", (roomName) => {
+// 	rooms.style.display = "block";
+// 	gameRoomMenu.style.display = "none";
+// 	gameRoomMenu.querySelector("#gameRoomMenu .title h3").innerText = "";
+// 	gameRoomRoom = "";
+// });
 
-socket.on("connect", () => {
-	document.querySelector("#socket-id-container").innerText = socket.id;
-});
+// socket.on("connect", () => {
+// 	document.querySelector("#socket-id-container").innerText = socket.id;
+// });
 
 function updatePlayerCounters() {
 	function findElm(name) {
@@ -191,7 +190,7 @@ function updatePlayerCounters() {
 }
 function addRoom(name) {
 	// socket.emit("rooms", name, "add");
-	socket.emit("addRoomRequest", name);
+	// socket.emit("addRoomRequest", name);
 	roomNameModal.close();
 }
 
@@ -204,13 +203,13 @@ function leaveTeam() {
 }
 function joinTeam(team) {
 	console.log("trying to join team: " + team);
-	socket.emit("joinTeamRequest", gameRoomName, team);
+	// socket.emit("joinTeamRequest", gameRoomName, team);
 }
 function joinRoom(name) {
-	socket.emit("joinRoomRequest", name);
+	// socket.emit("joinRoomRequest", name);
 }
 function leaveRoom(name) {
-	socket.emit("leaveRoomRequest", name);
+	// socket.emit("leaveRoomRequest", name);
 }
 function closeRoomModal() {
 	roomNameModal.close();
