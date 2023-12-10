@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/website/style.css" />
+    <title>Volleyball</title>
+  </head>
+  <body>
+    <div
+      class="room hidden"
+      id="room-copy"
+      onclick="joinRoom(this.querySelector('p').innerText);"
+    >
+      <p class="name"></p>
+      <div class="room-size" data-filled="1">
+        <div class="room-circle"></div>
+        <div class="room-circle"></div>
+        <div class="room-circle"></div>
+        <div class="room-circle"></div>
+      </div>
+    </div>
+    <div class="hidden">
+      <div id="gameMenu-team-player-copy" class = "room team-player-elm">
+        <p>Player Name</p>
+      </div>
+    </div>
+    <dialog id="modal">
+      <label for="name-input">Name</label>
+      <input placeholder="Enter Name" type="text" name="" id="name-input" />
+      <button type="submit" onclick="enterName();">Continue</button>
+    </dialog>
+    <dialog id="roomModal">
+      <label for="room-input">Name</label>
+      <input
+        placeholder="Enter Room Name"
+        type="text"
+        name=""
+        id="room-input"
+      />
+      <button onclick="closeRoomModal();">Cancel</button>
+      <button
+        type="submit"
+        onclick="addRoom(document.querySelector('#room-input').value);document.querySelector('#room-input').value = `` "
+      >
+        Continue
+      </button>
+    </dialog>
+    <div class="body">
+      <div class="rooms" id="rooms">
+        
+        <div class="title">
+          <h3>Game Rooms</h3>
+          <button onclick="openRoomModal();">Add Room</button>
+        </div>
+
+        <div class="rooms-container" id="rooms-container">
+          <span>No Rooms</span>
+        </div>
+      </div>
+      <div id="gameRoomMenu">
+        <div id="socket-id-container">
+          Socket id
+        </div>
+        <div class="title">
+          <h3>Joined Room Name</h3>
+          <button
+            onclick="leaveRoom(document.querySelector('#gameRoomMenu h3').innerText);"
+          >
+            Leave Room
+          </button>
+        </div>
+
+        <div class="rooms-container" id="rooms-container">
+          <div class="teams">
+            <h1>Team A</h1>
+            <div class="team-a" id="team-a">
+              <!-- <div class="room" id = "team-copy">
+                <p>Player Name</p>
+              </div> -->
+            </div>
+            <h1>Team B</h1>
+            <div class="team-b" id = 'team-b'></div>
+          </div>
+          <div class="join-team">
+            <button onclick = "joinTeam('a');">Join A</button>
+            <button onclick="joinTeam('b');">Join B</button>
+            <hr>
+            <button onclick="leaveTeam()" id = "leave-team">Leave Team</button>
+            <button id = "start-match">Start Match</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/website/client.js"></script>
+  </body>
+</html>
